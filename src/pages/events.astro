@@ -12,6 +12,11 @@ const season = seasonData.season;
 const location = seasonData.location;
 const address = seasonData.address;
 const mapsUrl = seasonData.mapsUrl;
+const defaultMetaJson = JSON.stringify({
+  location: seasonData.location,
+  address: seasonData.address,
+  mapsUrl: seasonData.mapsUrl,
+});
 ---
 
 <Layout metadata={metadata}>
@@ -43,9 +48,18 @@ const mapsUrl = seasonData.mapsUrl;
   </section>
 </Layout>
 
-<script define:vars={{ eventsJson, season, mapsUrl }}>
+<script define:vars={{ eventsJson, season, mapsUrl, defaultMetaJson }}>
   const events = JSON.parse(eventsJson);
+  const defaultMeta = JSON.parse(defaultMetaJson);
   const now = new Date();
+
+  function resolveMeta(e) {
+    return {
+      location: e.location ?? defaultMeta.location,
+      address: e.address ?? defaultMeta.address,
+      mapsUrl: e.mapsUrl ?? defaultMeta.mapsUrl,
+    };
+  }
 
   function formatDate(dateStr) {
     return new Date(dateStr + 'T12:00:00-05:00').toLocaleDateString('en-US', {
@@ -73,14 +87,19 @@ const mapsUrl = seasonData.mapsUrl;
       const next = isNext(e, i);
       const cancelled = e.cancelled;
       const tourney = e.isTourney;
+      const special = e.isSpecial;
+      const meta = resolveMeta(e);
 
       let badge = '';
       if (cancelled) {
         badge = '<span class="ml-2 text-xs font-bold bg-red-100 text-red-700 px-2 py-0.5 rounded-full">CANCELLED</span>';
       } else if (next) {
         badge = '<span class="ml-2 text-xs font-bold bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full">NEXT GAME</span>';
-      } else if (tourney) {
-        badge = '<span class="ml-2 text-xs font-bold bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full">TOURNEY DAY</span>';
+      }
+      if (special && !cancelled) {
+        badge += '<span class="ml-2 text-xs font-bold bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full">SPECIAL EVENT</span>';
+      } else if (tourney && !cancelled) {
+        badge += '<span class="ml-2 text-xs font-bold bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full">TOURNEY DAY</span>';
       }
 
       const rowClass = past
@@ -89,14 +108,21 @@ const mapsUrl = seasonData.mapsUrl;
           ? 'ring-2 ring-emerald-400 bg-emerald-50'
           : cancelled
             ? 'bg-red-50'
-            : 'bg-white hover:bg-gray-50';
+            : special
+              ? 'bg-amber-50 hover:bg-amber-100'
+              : 'bg-white hover:bg-gray-50';
+
+      const addressHtml = `<a href="${meta.mapsUrl}" target="_blank" rel="noopener noreferrer" class="text-xs text-gray-400 hover:underline">${meta.address}</a>`;
 
       return `
         <div class="flex items-center justify-between rounded-xl border border-gray-200 px-5 py-4 ${rowClass} transition-colors">
           <div>
-            <span class="font-semibold text-gray-900 ${cancelled ? 'line-through decoration-red-400' : ''}">${formatDate(e.date)}</span>
-            ${badge}
-            ${tourney && !cancelled ? '<a href="/the-great-mojo-tourney" class="ml-2 text-xs underline text-blue-600">Tournament details →</a>' : ''}
+            <div>
+              <span class="font-semibold text-gray-900 ${cancelled ? 'line-through decoration-red-400' : ''}">${formatDate(e.date)}</span>
+              ${badge}
+              ${tourney && !cancelled ? '<a href="/the-great-mojo-tourney" class="ml-2 text-xs underline text-blue-600">Tournament details →</a>' : ''}
+            </div>
+            <div class="mt-0.5">${addressHtml}</div>
           </div>
           <div class="text-sm text-gray-500 text-right">
             ${past ? '<span class="text-xs text-gray-400">Past</span>' : '<span class="text-xs text-gray-500">1–3 PM CDT</span>'}
