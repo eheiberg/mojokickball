@@ -25,15 +25,32 @@ const defaultMetaJson = JSON.stringify(defaultMeta);
         <span id="event-address" class="text-sm"></span>
       </p>
       <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
-        <a
-          id="event-calendar-link"
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-block text-white font-semibold px-7 py-3 rounded-xl transition-colors"
-        >
-          Add to Calendar
-        </a>
+        <div class="relative">
+          <button
+            id="event-calendar-btn"
+            type="button"
+            class="inline-flex items-center gap-1 text-white font-semibold px-7 py-3 rounded-xl transition-colors"
+          >
+            Add to Calendar <span aria-hidden="true">▾</span>
+          </button>
+          <div
+            id="calendar-dropdown"
+            class="hidden absolute left-0 top-full mt-1 z-10 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden min-w-full"
+          >
+            <a
+              id="event-gcal-link"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+            >Google Calendar</a>
+            <button
+              id="event-ics-btn"
+              type="button"
+              class="block w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+            >Download .ics</button>
+          </div>
+        </div>
         <a
           id="event-maps-link"
           href="#"
@@ -107,7 +124,7 @@ const defaultMetaJson = JSON.stringify(defaultMeta);
     };
   }
 
-  function buildCalendarUrl(dateStr, meta) {
+  function buildGcalUrl(dateStr, meta) {
     const d = dateStr.replace(/-/g, '');
     const params = new URLSearchParams({
       action: 'TEMPLATE',
@@ -118,6 +135,35 @@ const defaultMetaJson = JSON.stringify(defaultMeta);
       location: `${meta.location}, ${meta.address}`,
     });
     return `https://calendar.google.com/calendar/render?${params}`;
+  }
+
+  function buildIcsContent(dateStr, meta) {
+    const d = dateStr.replace(/-/g, '');
+    const loc = `${meta.location}\\, ${meta.address}`;
+    return [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//Mojo Kickball//EN',
+      'BEGIN:VEVENT',
+      `DTSTART;TZID=America/Chicago:${d}T130000`,
+      `DTEND;TZID=America/Chicago:${d}T150000`,
+      'SUMMARY:Mojo Kickball',
+      'DESCRIPTION:Free pickup kickball! No registration required.',
+      `LOCATION:${loc}`,
+      `UID:mojo-kickball-${dateStr}@mojokickball.com`,
+      'END:VEVENT',
+      'END:VCALENDAR',
+    ].join('\r\n');
+  }
+
+  function downloadIcs(dateStr, meta) {
+    const blob = new Blob([buildIcsContent(dateStr, meta)], { type: 'text/calendar' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'mojo-kickball.ics';
+    a.click();
+    URL.revokeObjectURL(url);
   }
 
   function getDisplayEvent() {
@@ -149,7 +195,8 @@ const defaultMetaJson = JSON.stringify(defaultMeta);
     } else {
       const card = document.getElementById('event-upcoming');
       const typeLabel = document.getElementById('event-type-label');
-      const calendarBtn = document.getElementById('event-calendar-link');
+      const calendarBtn = document.getElementById('event-calendar-btn');
+      const dropdown = document.getElementById('calendar-dropdown');
 
       if (event.isSpecial) {
         card.classList.add('border-amber-400', 'bg-amber-50');
@@ -166,8 +213,21 @@ const defaultMetaJson = JSON.stringify(defaultMeta);
       document.getElementById('event-date').textContent = formatDate(event.date);
       document.getElementById('event-location').textContent = meta.location;
       document.getElementById('event-address').textContent = meta.address;
-      document.getElementById('event-calendar-link').href = buildCalendarUrl(event.date, meta);
+      document.getElementById('event-gcal-link').href = buildGcalUrl(event.date, meta);
       document.getElementById('event-maps-link').href = meta.mapsUrl;
+
+      calendarBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdown.classList.toggle('hidden');
+      });
+
+      document.getElementById('event-ics-btn').addEventListener('click', () => {
+        downloadIcs(event.date, meta);
+        dropdown.classList.add('hidden');
+      });
+
+      document.addEventListener('click', () => dropdown.classList.add('hidden'));
+
       card.classList.remove('hidden');
     }
   } else {
