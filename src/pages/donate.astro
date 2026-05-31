@@ -1,0 +1,95 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Donate',
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero tagline="Support Mojo">
+    <Fragment slot="title">
+      Help keep the game <span class="text-accent">free for everyone</span>
+    </Fragment>
+    <Fragment slot="subtitle">
+      MojoKickball is free to play — but running a weekly league has real costs. A $5 donation covers a fair share of
+      what it takes to keep the field reserved and the equipment ready every Sunday.
+    </Fragment>
+  </Hero>
+
+  <!-- What donations cover -->
+  <Features2
+    title="What your donation supports"
+    subtitle="Together, we can make sports something for everyone."
+    columns={2}
+    items={[
+      {
+        title: 'Field Rental',
+        description:
+          'Kenwood Park field rental fees keep a dedicated space available every Sunday for the entire season.',
+        icon: 'tabler:map-2',
+      },
+      {
+        title: 'Kickballs',
+        description:
+          'Six lightweight polyurethane balls are needed per game. They wear down over the season and need replacing.',
+        icon: 'tabler:ball-football',
+      },
+      {
+        title: 'Equipment',
+        description:
+          'Cones, sashes (for chasers), bunt line markers, and other game equipment are funded by donations.',
+        icon: 'tabler:tool',
+      },
+      {
+        title: 'Accessibility',
+        description:
+          'Every dollar goes toward keeping the door open for anyone who wants to play, regardless of what they can afford.',
+        icon: 'tabler:heart',
+      },
+    ]}
+  />
+
+  <!-- PayPal Donate Button -->
+  <section class="py-12 px-4">
+    <div class="max-w-md mx-auto text-center">
+      <h2 class="text-2xl font-bold text-gray-900 mb-3">Donate via PayPal</h2>
+      <p class="text-gray-600 mb-8">
+        Any amount helps. $5 is suggested — even $1 makes a difference over a full season.
+      </p>
+      <!--
+        PayPal Donate Button:
+        Replace this comment block with your PayPal donate button code.
+        You can generate one at https://www.paypal.com/donate/buttons/
+        It will look something like:
+        <form action="https://www.paypal.com/donate" method="post" target="_top">
+          <input type="hidden" name="hosted_button_id" value="YOUR_BUTTON_ID" />
+          <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" ... />
+        </form>
+      -->
+      <div class="inline-block rounded-xl border-2 border-dashed border-gray-300 px-10 py-8 text-gray-400">
+        <p class="text-sm">PayPal button goes here</p>
+        <p class="text-xs mt-1">(Replace with your PayPal donate button code)</p>
+      </div>
+    </div>
+  </section>
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Register for a Game',
+        href: 'https://www.eventbrite.com/e/mojo-kickball-tickets',
+        target: '_blank',
+      },
+    ]}
+  >
+    <Fragment slot="title">Ready to play?</Fragment>
+    <Fragment slot="subtitle">
+      Come join us any Sunday. Kenwood Park Field #2 · 1:00 PM – 3:00 PM CDT
+    </Fragment>
+  </CallToAction>
+</Layout>

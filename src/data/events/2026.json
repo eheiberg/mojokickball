@@ -1,0 +1,33 @@
+{
+  "season": 2026,
+  "location": "Kenwood Park Field #2",
+  "address": "2101 W Franklin Ave, Minneapolis, MN 55405",
+  "startTime": "1:00 PM",
+  "endTime": "3:00 PM",
+  "timezone": "CDT",
+  "mapsUrl": "https://maps.google.com/?q=Kenwood+Park+Field+2,+2101+W+Franklin+Ave,+Minneapolis+MN+55405",
+  "registerUrl": "https://www.eventbrite.com/e/mojo-kickball-tickets",
+  "events": [
+    { "date": "2026-05-17", "cancelled": false },
+    { "date": "2026-05-24", "cancelled": false },
+    { "date": "2026-05-31", "cancelled": false },
+    { "date": "2026-06-07", "cancelled": false },
+    { "date": "2026-06-14", "cancelled": false },
+    { "date": "2026-06-21", "cancelled": false },
+    { "date": "2026-06-28", "cancelled": false },
+    { "date": "2026-07-05", "cancelled": false },
+    { "date": "2026-07-12", "cancelled": false },
+    { "date": "2026-07-19", "cancelled": false },
+    { "date": "2026-07-26", "cancelled": false },
+    { "date": "2026-08-02", "cancelled": false },
+    { "date": "2026-08-09", "cancelled": false },
+    { "date": "2026-08-16", "cancelled": false },
+    { "date": "2026-08-23", "cancelled": false },
+    { "date": "2026-08-30", "cancelled": false },
+    { "date": "2026-09-06", "cancelled": false },
+    { "date": "2026-09-13", "cancelled": false },
+    { "date": "2026-09-20", "cancelled": false },
+    { "date": "2026-09-27", "cancelled": false },
+    { "date": "2026-10-04", "cancelled": false, "isTourney": true }
+  ]
+}

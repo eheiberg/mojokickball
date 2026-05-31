@@ -1,0 +1,171 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Note from '~/components/widgets/Note.astro';
+import { YOUTUBE_TUTORIAL_ID } from '~/data/site';
+
+const metadata = {
+  title: 'How to Play',
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero tagline="How to Play">
+    <Fragment slot="title">
+      6-Ball Kickball: <span class="text-accent">The Game</span>
+    </Fragment>
+    <Fragment slot="subtitle">
+      MojoKickball combines kickball, tag, dodgeball, and hot potato into one sport. The rules create
+      multiple roles so that players of all abilities can meaningfully contribute. Here's how it works.
+    </Fragment>
+  </Hero>
+
+  <Note title="Quick summary:" description="4 quarters of 8 minutes · 6 kickballs in play · Kicking team pitches · Chasers tag fielders · Bases are always safe" />
+
+  <!-- Field & Equipment -->
+  <Features2
+    title="Equipment & Setup"
+    tagline="What you need"
+    columns={3}
+    items={[
+      {
+        title: 'The Field',
+        description:
+          'Standard softball/baseball diamond with four bases. A cone marks the pitcher\'s area and a bunt line is set in front of home plate.',
+        icon: 'tabler:map-2',
+      },
+      {
+        title: 'Six Kickballs',
+        description:
+          'Lightweight polyurethane foam balls — soft and safe. All six are in play at once, managed by the kicking team\'s pitcher.',
+        icon: 'tabler:ball-football',
+      },
+      {
+        title: 'Three Sashes',
+        description:
+          'Worn by the three Chasers on the fielding team. Sashes identify who can tag fielders and retrieve live balls.',
+        icon: 'tabler:tag',
+      },
+    ]}
+  />
+
+  <!-- Roles -->
+  <Features
+    id="roles"
+    tagline="Player Roles"
+    title="Everyone has a job"
+    subtitle="6-ball kickball creates four distinct roles, each with its own strategy and value. You'll rotate through them as teams switch sides."
+    items={[
+      {
+        title: 'Pitcher (Kicking Team)',
+        description:
+          'Positioned in the pitcher\'s area, the pitcher manages all six balls strategically — rolling them to kickers and controlling the pace of the game. A key offensive role.',
+        icon: 'tabler:user-star',
+      },
+      {
+        title: 'Kickers & Runners',
+        description:
+          'Kickers attempt to advance around the bases. Runners can steal bases at any time. Bases are always safe zones — you cannot be tagged while standing on a base.',
+        icon: 'tabler:run',
+      },
+      {
+        title: 'Fielders (Fielding Team)',
+        description:
+          'Catch live balls from kicks. Once a fielder catches a live ball, it cannot touch the ground — if it does, it becomes a "dead ball." Fielders must keep balls alive and pass to Chasers.',
+        icon: 'tabler:hand-stop',
+      },
+      {
+        title: 'Chasers (3 players, wear sashes)',
+        description:
+          'The three Chasers are the only players who can tag runners to get them out. They also retrieve balls from fielders and return them to the pitcher. Three types: main, outer, and pitcher\'s chaser.',
+        icon: 'tabler:arrows-right-left',
+      },
+    ]}
+  />
+
+  <!-- Gameplay -->
+  <Steps
+    title="How a game works"
+    tagline="Gameplay"
+    items={[
+      {
+        title: 'The game has 4 quarters of 8 minutes each',
+        description:
+          'Teams alternate between kicking and fielding. There are no limits on strikes, outs, or fouls — you keep playing until the quarter ends.',
+        icon: 'tabler:clock',
+      },
+      {
+        title: 'Kicking team pitches their own balls',
+        description:
+          'The kicking team\'s pitcher controls the six balls. They roll to kickers strategically — it\'s an offensive advantage, not just a formality.',
+        icon: 'tabler:ball-football',
+      },
+      {
+        title: 'Get runners out by tagging with a live ball',
+        description:
+          'Only Chasers (wearing sashes) can tag runners. A ball is "live" when a fielder holds it above the ground. Runners are safe on any base.',
+        icon: 'tabler:shield',
+      },
+      {
+        title: 'Mayhem: 60-second chaos round',
+        description:
+          'At a signal (the "Mayhem horn"), the entire kicking team becomes Chasers for 60 seconds. Anyone can tag anyone — it\'s organized chaos, and everyone loves it.',
+        icon: 'tabler:flame',
+      },
+      {
+        title: 'Score runs, avoid tags, have fun',
+        description:
+          'Runners score by making it around the bases. The team with the most runs at the end of four quarters wins.',
+        icon: 'tabler:trophy',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'People playing outdoor sport',
+    }}
+  />
+
+  <!-- Video -->
+  <section class="py-14 px-4 bg-gray-50">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-bold text-gray-900 mb-3">Watch the Tutorial</h2>
+      <p class="text-gray-600 mb-8">
+        The tutorial video walks through all the rules with a live demo game.
+      </p>
+      <div class="relative w-full aspect-video rounded-2xl overflow-hidden shadow-xl">
+        <iframe
+          class="absolute inset-0 w-full h-full"
+          src={`https://www.youtube.com/embed/${YOUTUBE_TUTORIAL_ID}`}
+          title="MojoKickball Tutorial Video"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Register on EventBrite',
+        href: 'https://www.eventbrite.com/e/mojo-kickball-tickets',
+        target: '_blank',
+      },
+      {
+        text: 'See Upcoming Events',
+        href: '/events',
+      },
+    ]}
+  >
+    <Fragment slot="title">Ready to give it a try?</Fragment>
+    <Fragment slot="subtitle">
+      New players get a Buddy intro round — you'll be playing confidently within minutes.
+    </Fragment>
+  </CallToAction>
+</Layout>

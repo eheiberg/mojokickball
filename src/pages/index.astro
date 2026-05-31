@@ -1,0 +1,137 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import NextEvent from '~/components/widgets/NextEvent.astro';
+import { YOUTUBE_TUTORIAL_ID } from '~/data/site';
+
+const metadata = {
+  title: 'MojoKickball — Come. Play. Everyone.',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero -->
+  <Hero
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Register Free',
+        href: 'https://www.eventbrite.com/e/mojo-kickball-tickets',
+        target: '_blank',
+        icon: 'tabler:ball-football',
+      },
+      { text: 'How to Play', href: '/tutorial' },
+    ]}
+  >
+    <Fragment slot="title">
+      Come. Play. <span class="text-accent">Everyone.</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <span class="font-semibold">MojoKickball</span> is a free, inclusive 6-ball kickball game in Minneapolis — mixing kickball,
+      tag, dodgeball, and hot potato into one sport designed for everyone to meaningfully participate.
+      <span class="block mt-2 font-medium text-gray-700">Every Sunday 1–3pm · Kenwood Park · Free to play</span>
+    </Fragment>
+  </Hero>
+
+  <!-- Next Event Widget -->
+  <div class="max-w-4xl mx-auto px-4 -mt-4">
+    <h2 class="text-2xl font-bold text-center text-gray-800 mb-2">Next Game</h2>
+    <NextEvent />
+  </div>
+
+  <!-- Tutorial Video -->
+  <section class="py-14 px-4 bg-gray-50">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-bold text-gray-900 mb-3">See It In Action</h2>
+      <p class="text-gray-600 mb-8">
+        Watch the tutorial to learn how 6-ball kickball works before your first game.
+      </p>
+      <div class="relative w-full aspect-video rounded-2xl overflow-hidden shadow-xl">
+        <iframe
+          class="absolute inset-0 w-full h-full"
+          src={`https://www.youtube.com/embed/${YOUTUBE_TUTORIAL_ID}`}
+          title="MojoKickball Tutorial"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <p class="mt-5">
+        <a href="/tutorial" class="text-accent font-semibold hover:underline">Read the full rules →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- What Makes Mojo Different -->
+  <Features
+    id="features"
+    tagline="Why Mojo?"
+    title="Sport for everyone — really"
+    subtitle="Mojo isn't just another rec league. The game is designed from the ground up so that people of all abilities, ages, and experience levels can play a meaningful role."
+    items={[
+      {
+        title: 'Truly inclusive',
+        description:
+          'No dominant teams, no aggressive play styles, no gender imbalance. The rules create space for everyone to contribute.',
+        icon: 'tabler:users',
+      },
+      {
+        title: 'Free to play',
+        description:
+          'There\'s no cost to show up. A $5 suggested donation helps cover field rental and equipment — pay what you can.',
+        icon: 'tabler:heart',
+      },
+      {
+        title: 'Every Sunday',
+        description:
+          'Games run every Sunday from mid-May through early October at Kenwood Park Field #2 in Minneapolis, 1–3pm.',
+        icon: 'tabler:calendar',
+      },
+      {
+        title: 'No experience needed',
+        description:
+          'New players get paired with a "Buddy" for an intro round. You\'ll understand the game within minutes.',
+        icon: 'tabler:school',
+      },
+      {
+        title: 'Low contact, high strategy',
+        description:
+          'Lightweight polyurethane balls and rules that emphasize tagging over throwing keep it fun and safe for everyone.',
+        icon: 'tabler:shield-check',
+      },
+      {
+        title: 'Age 10+',
+        description:
+          'Anyone 10 and up is welcome. Bring the family, bring friends, or come solo — you\'ll fit right in.',
+        icon: 'tabler:star',
+      },
+    ]}
+  />
+
+  <!-- CTA -->
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Register Free on EventBrite',
+        href: 'https://www.eventbrite.com/e/mojo-kickball-tickets',
+        target: '_blank',
+        icon: 'tabler:external-link',
+      },
+      {
+        text: 'Learn How to Play',
+        href: '/tutorial',
+      },
+    ]}
+  >
+    <Fragment slot="title">Ready to play?</Fragment>
+    <Fragment slot="subtitle">
+      Show up any Sunday. No registration required — just come ready to move.<br />
+      <span class="text-sm">Kenwood Park Field #2 · 2101 W Franklin Ave, Minneapolis · 1pm</span>
+    </Fragment>
+  </CallToAction>
+</Layout>

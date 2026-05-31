@@ -1,0 +1,84 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'FAQ',
+};
+---
+
+<Layout metadata={metadata}>
+  <HeroText
+    tagline="FAQ"
+    title="Frequently Asked Questions"
+    subtitle="Everything you need to know before showing up on Sunday."
+  />
+
+  <FAQs
+    title="Got questions? We've got answers."
+    classes={{ container: 'max-w-4xl' }}
+    items={[
+      {
+        title: 'What does it cost?',
+        description:
+          'MojoKickball is free to play. We ask for a $5 suggested donation to help cover field rental and equipment — but nobody is turned away for not donating. Pay what you can.',
+      },
+      {
+        title: 'Where and when do games happen?',
+        description:
+          'Games are every Sunday from 1:00 PM to 3:00 PM CDT at Kenwood Park Field #2, 2101 W Franklin Ave, Minneapolis, MN. The season runs from mid-May through early October.',
+      },
+      {
+        title: 'How will I know if a game is cancelled?',
+        description:
+          'Rain-out and cancellation updates are posted to the Facebook group. Check the home page of this site for the next game status — a cancelled badge will appear if the game is off.',
+      },
+      {
+        title: 'What is the age range?',
+        description:
+          'Players must be at least 10 years old to participate. There\'s no upper age limit — the game is designed to be accessible to a wide range of abilities.',
+      },
+      {
+        title: 'I\'ve never played before. Will I be lost?',
+        description:
+          'Not at all! New players are paired with experienced "Buddies" for an introductory demo round. You\'ll get the hang of it within a few minutes of playing.',
+      },
+      {
+        title: 'What should I wear?',
+        description:
+          'Come in movement-friendly clothing. Turf cleats are optional and can be helpful on the field, but regular athletic shoes work fine. No flip-flops or sandals.',
+      },
+      {
+        title: 'Is it safe?',
+        description:
+          'Yes. We use lightweight polyurethane foam balls that are soft on impact. The rules are designed to emphasize tagging over hard throwing, and bases are always safe zones from tagging.',
+      },
+      {
+        title: 'Can I start a Mojo league in my city?',
+        description:
+          'Absolutely. Reach out via the Contact page and Eric can share resources and guidance for getting a 6-ball kickball league started in your area.',
+      },
+    ]}
+  />
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Contact Us',
+        href: '/contact',
+      },
+      {
+        text: 'How to Play',
+        href: '/tutorial',
+      },
+    ]}
+  >
+    <Fragment slot="title">Still have questions?</Fragment>
+    <Fragment slot="subtitle">
+      Send a message and we'll get back to you. Or read the full rules on the How to Play page.
+    </Fragment>
+  </CallToAction>
+</Layout>

@@ -1,0 +1,114 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'About',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero -->
+  <Hero tagline="About MojoKickball">
+    <Fragment slot="title">
+      Inclusion with <span class="text-accent">Contribution</span>
+    </Fragment>
+    <Fragment slot="subtitle">
+      MojoKickball was created to solve a problem: most recreational sports leagues still end up dominated by the same
+      competitive players, leaving everyone else to watch from the sidelines. Mojo is different by design.
+    </Fragment>
+  </Hero>
+
+  <!-- Origin Story -->
+  <Content
+    isReversed
+    tagline="The Story"
+    title="Why Eric built this"
+    items={[
+      {
+        title: 'The problem with rec leagues',
+        description:
+          'Traditional recreational leagues often have dominant teams, aggressive players, gender imbalance, and high barriers to entry. The "fun" gets concentrated among the most competitive.',
+      },
+      {
+        title: 'A sport designed for everyone',
+        description:
+          'Eric Heiberg created 6-ball kickball to flip that dynamic. By combining kickball, tag, dodgeball, and hot potato, the game creates multiple roles and entry points — so that people of all abilities can meaningfully contribute.',
+      },
+      {
+        title: '"The fun of agency"',
+        description:
+          'Mojo players value the fun of losing as much as winning, and the joy of having agency on the field — not mastery. The game rewards participation, not just athletic dominance.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80',
+      alt: 'People playing together outdoors',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">
+        Built for the player who just wants to play
+      </h3>
+      MojoKickball started in Minneapolis and has been running every summer since. New players are always welcome.
+    </Fragment>
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-emerald-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Content>
+
+  <!-- Philosophy -->
+  <Content
+    isAfterContent
+    tagline="The Philosophy"
+    title="Inclusion with Contribution"
+    items={[
+      {
+        title: 'Everyone has a role',
+        description:
+          'Pitchers, runners, fielders, and chasers all play differently. The game creates multiple pathways to contribute so nobody is standing around.',
+      },
+      {
+        title: 'Low contact, high fun',
+        description:
+          'Lightweight polyurethane balls and rules that emphasize strategy over strength keep the game accessible to everyone from age 10 and up.',
+      },
+      {
+        title: 'Community first',
+        description:
+          'Mojo is free to play. A $5 suggested donation helps cover field rental and equipment — but the door is always open regardless.',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Community sports gathering',
+    }}
+  >
+    <Fragment slot="content">
+      The design goal was simple: make a sport where the fun in losing is just as real as the fun in winning.
+    </Fragment>
+  </Content>
+
+  <!-- CTA -->
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Register Free on EventBrite',
+        href: 'https://www.eventbrite.com/e/mojo-kickball-tickets',
+        target: '_blank',
+      },
+      {
+        text: 'Contact Eric',
+        href: '/contact',
+      },
+    ]}
+  >
+    <Fragment slot="title">Questions? Want to start your own Mojo league?</Fragment>
+    <Fragment slot="subtitle">
+      Resources are available if you want to bring 6-ball kickball to your city. Reach out and Eric will help you get started.
+    </Fragment>
+  </CallToAction>
+</Layout>
