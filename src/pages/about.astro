@@ -3,6 +3,8 @@ import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Content from '~/components/widgets/Content.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import ericSarahDawn from '~/assets/images/eric_sarah_dawn.avif';
+import liningUp from '~/assets/images/lining_up.avif';
 
 const metadata = {
   title: 'About',
@@ -44,8 +46,8 @@ const metadata = {
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80',
-      alt: 'People playing together outdoors',
+      src: ericSarahDawn,
+      alt: 'Eric Heiberg with MojoKickball players',
     }}
   >
     <Fragment slot="content">
@@ -82,8 +84,8 @@ const metadata = {
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Community sports gathering',
+      src: liningUp,
+      alt: 'MojoKickball players lining up at Kenwood Park',
     }}
   >
     <Fragment slot="content">

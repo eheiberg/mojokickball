@@ -5,6 +5,7 @@ import Features from '~/components/widgets/Features.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import NextEvent from '~/components/widgets/NextEvent.astro';
 import { YOUTUBE_TUTORIAL_ID } from '~/data/site';
+import groupPhoto from '~/assets/images/group_photo.avif';
 
 const metadata = {
   title: 'MojoKickball — Come. Play. Everyone.',
@@ -15,6 +16,7 @@ const metadata = {
 <Layout metadata={metadata}>
   <!-- Hero -->
   <Hero
+    image={{ src: groupPhoto, alt: 'MojoKickball players at Kenwood Park' }}
     actions={[
       {
         variant: 'primary',

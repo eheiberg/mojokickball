@@ -9,7 +9,7 @@ const loadLocalImages = () => {
   if (_localImages) return _localImages;
   try {
     _localImages = import.meta.glob(
-      '~/assets/images/**/*.{jpeg,jpg,png,tiff,webp,gif,svg,JPEG,JPG,PNG,TIFF,WEBP,GIF,SVG}'
+      '~/assets/images/**/*.{jpeg,jpg,png,tiff,webp,gif,svg,avif,JPEG,JPG,PNG,TIFF,WEBP,GIF,SVG,AVIF}'
     );
   } catch {
     _localImages = {};
