@@ -168,7 +168,6 @@ const defaultMetaJson = JSON.stringify(defaultMeta);
 
   function getDisplayEvent() {
     const now = new Date();
-    // Show the first event whose end time (3pm CDT = 20:00 UTC) hasn't passed
     return events.find((e) => new Date(e.date + 'T15:00:00-05:00') > now) || null;
   }
 
@@ -182,55 +181,59 @@ const defaultMetaJson = JSON.stringify(defaultMeta);
     });
   }
 
-  const event = getDisplayEvent();
+  function init() {
+    const event = getDisplayEvent();
 
-  if (event) {
-    const meta = resolveMeta(event);
+    if (event) {
+      const meta = resolveMeta(event);
 
-    if (event.cancelled) {
-      document.getElementById('event-cancelled-date').textContent = formatDate(event.date);
-      document.getElementById('event-cancelled-location').textContent = meta.location;
-      document.getElementById('event-cancelled-address').textContent = meta.address;
-      document.getElementById('event-cancelled').classList.remove('hidden');
-    } else {
-      const card = document.getElementById('event-upcoming');
-      const typeLabel = document.getElementById('event-type-label');
-      const calendarBtn = document.getElementById('event-calendar-btn');
-      const dropdown = document.getElementById('calendar-dropdown');
-
-      if (event.isSpecial) {
-        card.classList.add('border-amber-400', 'bg-amber-50');
-        typeLabel.textContent = 'Special Event';
-        typeLabel.classList.add('text-amber-700');
-        calendarBtn.classList.add('bg-amber-600', 'hover:bg-amber-700');
+      if (event.cancelled) {
+        document.getElementById('event-cancelled-date').textContent = formatDate(event.date);
+        document.getElementById('event-cancelled-location').textContent = meta.location;
+        document.getElementById('event-cancelled-address').textContent = meta.address;
+        document.getElementById('event-cancelled').classList.remove('hidden');
       } else {
-        card.classList.add('border-emerald-400', 'bg-emerald-50');
-        typeLabel.textContent = 'Next Game';
-        typeLabel.classList.add('text-emerald-700');
-        calendarBtn.classList.add('bg-emerald-600', 'hover:bg-emerald-700');
+        const card = document.getElementById('event-upcoming');
+        const typeLabel = document.getElementById('event-type-label');
+        const calendarBtn = document.getElementById('event-calendar-btn');
+        const dropdown = document.getElementById('calendar-dropdown');
+
+        if (event.isSpecial) {
+          card.classList.add('border-amber-400', 'bg-amber-50');
+          typeLabel.textContent = 'Special Event';
+          typeLabel.classList.add('text-amber-700');
+          calendarBtn.classList.add('bg-amber-600', 'hover:bg-amber-700');
+        } else {
+          card.classList.add('border-emerald-400', 'bg-emerald-50');
+          typeLabel.textContent = 'Next Game';
+          typeLabel.classList.add('text-emerald-700');
+          calendarBtn.classList.add('bg-emerald-600', 'hover:bg-emerald-700');
+        }
+
+        document.getElementById('event-date').textContent = formatDate(event.date);
+        document.getElementById('event-location').textContent = meta.location;
+        document.getElementById('event-address').textContent = meta.address;
+        document.getElementById('event-gcal-link').href = buildGcalUrl(event.date, meta);
+        document.getElementById('event-maps-link').href = meta.mapsUrl;
+
+        calendarBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          dropdown.classList.toggle('hidden');
+        });
+
+        document.getElementById('event-ics-btn').addEventListener('click', () => {
+          downloadIcs(event.date, meta);
+          dropdown.classList.add('hidden');
+        });
+
+        document.addEventListener('click', () => dropdown.classList.add('hidden'));
+
+        card.classList.remove('hidden');
       }
-
-      document.getElementById('event-date').textContent = formatDate(event.date);
-      document.getElementById('event-location').textContent = meta.location;
-      document.getElementById('event-address').textContent = meta.address;
-      document.getElementById('event-gcal-link').href = buildGcalUrl(event.date, meta);
-      document.getElementById('event-maps-link').href = meta.mapsUrl;
-
-      calendarBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        dropdown.classList.toggle('hidden');
-      });
-
-      document.getElementById('event-ics-btn').addEventListener('click', () => {
-        downloadIcs(event.date, meta);
-        dropdown.classList.add('hidden');
-      });
-
-      document.addEventListener('click', () => dropdown.classList.add('hidden'));
-
-      card.classList.remove('hidden');
+    } else {
+      document.getElementById('event-offseason').classList.remove('hidden');
     }
-  } else {
-    document.getElementById('event-offseason').classList.remove('hidden');
   }
+
+  document.addEventListener('astro:page-load', init);
 </script>
