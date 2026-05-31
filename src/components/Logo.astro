@@ -1,6 +1,8 @@
 ---
-import Image from '~/components/common/Image.astro';
-import mojoLogo from '~/assets/images/mojo_logo.png';
+import SixBalls from '~/components/ui/SixBalls.astro';
 ---
 
-<Image src={mojoLogo} alt="MojoKickball" height={44} width={45} loading="eager" layout="fixed" />
+<div class="ml-2 flex flex-col leading-tight items-end">
+  <span class="text-xl font-bold text-gray-900 whitespace-nowrap">MojoKickball</span>
+  <SixBalls size="sm" />
+</div>

@@ -1,0 +1,15 @@
+---
+interface Props {
+  size?: 'sm' | 'md' | 'lg';
+}
+const { size = 'sm' } = Astro.props;
+const dim = size === 'lg' ? '20px' : size === 'md' ? '14px' : '10px';
+const gap = size === 'lg' ? '5px' : size === 'md' ? '4px' : '3px';
+const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+---
+
+<div style={`display:flex; gap:${gap}; align-items:center;`}>
+  {colors.map((c) => (
+    <span style={`display:block; width:${dim}; height:${dim}; border-radius:50%; background:${c};`}></span>
+  ))}
+</div>
