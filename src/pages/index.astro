@@ -6,6 +6,8 @@ import CallToAction from '~/components/widgets/CallToAction.astro';
 import NextEvent from '~/components/widgets/NextEvent.astro';
 import { YOUTUBE_TUTORIAL_ID } from '~/data/site';
 import groupPhoto from '~/assets/images/group_photo.avif';
+import mojoLogo from '~/assets/images/mojo_logo.png';
+import Image from '~/components/common/Image.astro';
 
 const metadata = {
   title: 'MojoKickball — Come. Play. Everyone.',
@@ -28,7 +30,7 @@ const metadata = {
     ]}
   >
     <Fragment slot="title">
-      Come. Play. <span class="text-accent">Everyone.</span>
+      <Image src={mojoLogo} alt="Come. Play. Everyone." width={280} height={274} layout="fixed" loading="eager" class="mx-auto" />
     </Fragment>
 
     <Fragment slot="subtitle">
