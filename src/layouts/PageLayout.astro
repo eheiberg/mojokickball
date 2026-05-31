@@ -10,12 +10,16 @@ import type { MetaData } from '~/types';
 
 export interface Props {
   metadata?: MetaData;
+  accentColor?: string;
 }
 
-const { metadata } = Astro.props;
+const { metadata, accentColor } = Astro.props;
 ---
 
 <Layout metadata={metadata}>
+  {accentColor && (
+    <Fragment set:html={`<style>:root{--aw-color-accent:${accentColor}}</style>`} />
+  )}
   <slot name="announcement">
     <Announcement />
   </slot>
