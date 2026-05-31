@@ -6,7 +6,6 @@ const meta = {
   location: seasonData.location,
   address: seasonData.address,
   mapsUrl: seasonData.mapsUrl,
-  registerUrl: seasonData.registerUrl,
 };
 const metaJson = JSON.stringify(meta);
 ---
@@ -27,13 +26,13 @@ const metaJson = JSON.stringify(meta);
       </p>
       <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
         <a
-          id="event-register-link"
+          id="event-calendar-link"
           href="#"
           target="_blank"
           rel="noopener noreferrer"
           class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-7 py-3 rounded-xl transition-colors"
         >
-          Register Free on EventBrite
+          Add to Calendar
         </a>
         <a
           id="event-maps-link"
@@ -96,6 +95,19 @@ const metaJson = JSON.stringify(meta);
   const events = JSON.parse(eventsJson);
   const meta = JSON.parse(metaJson);
 
+  function buildCalendarUrl(dateStr) {
+    const d = dateStr.replace(/-/g, '');
+    const params = new URLSearchParams({
+      action: 'TEMPLATE',
+      text: 'Mojo Kickball',
+      dates: `${d}T130000/${d}T150000`,
+      ctz: 'America/Chicago',
+      details: 'Free pickup kickball at Kenwood Park! No registration required.',
+      location: 'Kenwood Park Field #2, 2101 W Franklin Ave, Minneapolis, MN 55405',
+    });
+    return `https://calendar.google.com/calendar/render?${params}`;
+  }
+
   function getDisplayEvent() {
     const now = new Date();
     // Show the first event whose end time (3pm CDT = 20:00 UTC) hasn't passed
@@ -122,7 +134,7 @@ const metaJson = JSON.stringify(meta);
       document.getElementById('event-date').textContent = formatDate(event.date);
       document.getElementById('event-location').textContent = meta.location;
       document.getElementById('event-address').textContent = meta.address;
-      document.getElementById('event-register-link').href = meta.registerUrl;
+      document.getElementById('event-calendar-link').href = buildCalendarUrl(event.date);
       document.getElementById('event-maps-link').href = meta.mapsUrl;
       document.getElementById('event-upcoming').classList.remove('hidden');
     }

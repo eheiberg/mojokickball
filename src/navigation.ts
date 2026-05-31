@@ -38,7 +38,6 @@ export const footerData = {
       links: [
         { text: 'Facebook Group', href: 'https://www.facebook.com/groups/mojokickball', target: '_blank' },
         { text: 'YouTube Channel', href: 'https://www.youtube.com/@chicocarlucci3885', target: '_blank' },
-        { text: 'Register (EventBrite)', href: 'https://www.eventbrite.com/e/mojo-kickball-tickets', target: '_blank' },
       ],
     },
   ],

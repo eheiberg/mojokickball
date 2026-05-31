@@ -6,7 +6,6 @@
   "endTime": "3:00 PM",
   "timezone": "CDT",
   "mapsUrl": "https://maps.google.com/?q=Kenwood+Park+Field+2,+2101+W+Franklin+Ave,+Minneapolis+MN+55405",
-  "registerUrl": "https://www.eventbrite.com/e/mojo-kickball-tickets",
   "events": [
     { "date": "2026-05-17", "cancelled": false },
     { "date": "2026-05-24", "cancelled": false },
