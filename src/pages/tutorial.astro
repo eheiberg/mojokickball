@@ -25,7 +25,7 @@ const metadata = {
     </Fragment>
   </Hero>
 
-  <Note title="Quick summary:" description="4 quarters of 8 minutes · 6 kickballs in play · Kicking team pitches · Chasers tag fielders · Bases are always safe" />
+  <Note title="Quick summary:" description="4 quarters of 8 minutes · 6 kickballs in play · Kicking team pitches · Chasers protect runners · Bases are always safe" />
 
   <!-- Field & Equipment -->
   <Features2
@@ -36,19 +36,19 @@ const metadata = {
       {
         title: 'The Field',
         description:
-          'Standard softball/baseball diamond with four bases. A cone marks the pitcher\'s area and a bunt line is set in front of home plate.',
+          'Standard softball/baseball diamond with four bases. A "bunt-line" markes the pitcher\'s area. A large area surrounding home plate essentially makes home-plate a home zone.',
         icon: 'tabler:map-2',
       },
       {
         title: 'Six Kickballs',
         description:
-          'Lightweight polyurethane foam balls — soft and safe. All six are in play at once, managed by the kicking team\'s pitcher.',
+          'All six are in play at once, managed by the kicking team\'s pitcher.',
         icon: 'tabler:ball-football',
       },
       {
         title: 'Three Sashes',
         description:
-          'Worn by the three Chasers on the fielding team. Sashes identify who can tag fielders and retrieve live balls.',
+          'Worn by the three chasers on the kicking team. Chasers essentially, are the "bodyguards" for the kicking team. A chaser can kill a fielder\'s ball by simply touching them.',
         icon: 'tabler:tag',
       },
     ]}
@@ -59,7 +59,7 @@ const metadata = {
     id="roles"
     tagline="Player Roles"
     title="Everyone has a job"
-    subtitle="6-ball kickball creates four distinct roles, each with its own strategy and value. You'll rotate through them as teams switch sides."
+    subtitle="MojoKickball creates four primary roles, each with its own strategy and value. You'll rotate through them throughout the game."
     items={[
       {
         title: 'Pitcher (Kicking Team)',
@@ -68,21 +68,21 @@ const metadata = {
         icon: 'tabler:user-star',
       },
       {
-        title: 'Kickers & Runners',
+        title: 'Kickers / Runners (Kicking Team)',
         description:
-          'Kickers attempt to advance around the bases. Runners can steal bases at any time. Bases are always safe zones — you cannot be tagged while standing on a base.',
+          'Kickers kick the ball and then become runners who attempt to advance around the bases, scoring at 3rd base. Bases are always safe zones — you are safe while standing on a base, but you won\'t be standing for long.',
         icon: 'tabler:run',
       },
       {
         title: 'Fielders (Fielding Team)',
         description:
-          'Catch live balls from kicks. Once a fielder catches a live ball, it cannot touch the ground — if it does, it becomes a "dead ball." Fielders must keep balls alive and pass to Chasers.',
+          'Retrieve kicked balls. Upon retrieval, the ball becomes "live". The ball stays "live" until it touches the ground again. Fielders use live balls to get runners out — but must stay clear of the chasers, who can kill a ball simply by touching the fielder.',
         icon: 'tabler:hand-stop',
       },
       {
-        title: 'Chasers (3 players, wear sashes)',
+        title: 'Chasers (3 players all wearing sashes on the Kicking Team)',
         description:
-          'The three Chasers are the only players who can tag runners to get them out. They also retrieve balls from fielders and return them to the pitcher. Three types: main, outer, and pitcher\'s chaser.',
+          'Chasers run the bases alongside the runners as bodyguards. Chasers attempt to block balls thrown at the runner. Additionally, if a chaser touches a fielder who is holding a live ball, that ball is immediately dead. Fielders constantly negotiate getting close enough to threaten runners while staying out of a chaser\'s reach. Three types of chaser: main, outer, and pitcher chaser.',
         icon: 'tabler:arrows-right-left',
       },
     ]}
@@ -90,7 +90,7 @@ const metadata = {
 
   <!-- Gameplay -->
   <Steps
-    title="How a game works"
+    title="How the game works"
     tagline="Gameplay"
     items={[
       {
@@ -106,21 +106,21 @@ const metadata = {
         icon: 'tabler:ball-football',
       },
       {
-        title: 'Get runners out by tagging with a live ball',
+        title: 'Fielders use live balls to get runners out',
         description:
-          'Only Chasers (wearing sashes) can tag runners. A ball is "live" when a fielder holds it above the ground. Runners are safe on any base.',
+          'A ball is "live" once a fielder touches/retrieves a ball. Fielders can tag (with the ball) or throw the ball at runners to get them out — but if the ball touches the ground again, it\'s dead. Chasers can also kill a ball by touching the fielder holding it. Runners are always safe on a base.',
         icon: 'tabler:shield',
       },
       {
-        title: 'Mayhem: 60-second chaos round',
+        title: 'Mayhem: 60-seconds of kicking team revenge',
         description:
-          'At a signal (the "Mayhem horn"), the entire kicking team becomes Chasers for 60 seconds. Anyone can tag anyone — it\'s organized chaos, and everyone loves it.',
+          'At a signal (the "Mayhem horn"), the entire kicking team becomes main chasers for 60 seconds. The kicking team tags/touches any fielder with a ball. The kicking team only has one free Mayhem per game. Any other Mayhem calls do not stop the game clock.',
         icon: 'tabler:flame',
       },
       {
         title: 'Score runs, avoid tags, have fun',
         description:
-          'Runners score by making it around the bases. The team with the most runs at the end of four quarters wins.',
+          'Runners score by making it around the bases, scoring at 3rd base. The team with the most runs at the end of the game wins.',
         icon: 'tabler:trophy',
       },
     ]}

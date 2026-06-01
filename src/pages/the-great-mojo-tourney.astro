@@ -4,6 +4,7 @@ import Hero from '~/components/widgets/Hero.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import mojoCup from '~/assets/images/the_mojo_cup.avif';
 
 const metadata = {
   title: 'The Great Mojo Tourney',
@@ -12,7 +13,11 @@ const metadata = {
 const tourneyDate = 'Sunday, October 4, 2026';
 const tourneyTime = '1:00 PM CDT';
 const tourneyLocation = 'Kenwood Park Field #2, Minneapolis';
-const registrationUrl = 'https://forms.google.com/'; // Replace with actual Google Form URL
+const tourneyYear = 2026;
+
+// To open registration: set registrationUrl to the Google Form URL.
+// To show the "coming soon" message: set registrationUrl to null.
+const registrationUrl: string | null = null;
 ---
 
 <Layout metadata={metadata} accentColor="purple">
@@ -57,7 +62,7 @@ const registrationUrl = 'https://forms.google.com/'; // Replace with actual Goog
       },
     ]}
     image={{
-      src: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2053&q=80',
+      src: mojoCup,
       alt: 'Trophy award ceremony',
     }}
   />
@@ -87,17 +92,25 @@ const registrationUrl = 'https://forms.google.com/'; // Replace with actual Goog
   <section class="py-12 px-4">
     <div class="max-w-xl mx-auto text-center">
       <h2 class="text-2xl font-bold text-gray-900 mb-3">Register for the Tournament</h2>
-      <p class="text-gray-600 mb-6">
-        If you've played a Mojo game this season, you're eligible. Register using the form below before the tournament date.
-      </p>
-      <a
-        href={registrationUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-block bg-accent hover:opacity-90 text-white font-semibold px-8 py-4 rounded-xl text-lg transition-opacity"
-      >
-        Register via Google Form
-      </a>
+      {registrationUrl ? (
+        <>
+          <p class="text-gray-600 mb-6">
+            If you've played a Mojo game this season, you're eligible. Register using the form below before the tournament date.
+          </p>
+          <a
+            href={registrationUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block bg-accent hover:opacity-90 text-white font-semibold px-8 py-4 rounded-xl text-lg transition-opacity"
+          >
+            Register via Google Form
+          </a>
+        </>
+      ) : (
+        <p class="text-gray-500 text-lg italic">
+          {tourneyYear} registration will open this summer. Stay tuned.
+        </p>
+      )}
     </div>
   </section>
 
