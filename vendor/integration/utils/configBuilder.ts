@@ -175,6 +175,9 @@ const getAppBlog = (config: Config) => {
 const getUI = (config: Config) => {
   const _default = {
     theme: 'system',
+    announcement: {
+      isEnabled: false,
+    },
   };
 
   return merge({}, _default, config?.ui ?? {});

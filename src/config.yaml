@@ -69,3 +69,5 @@ analytics:
 
 ui:
   theme: 'light:only'
+  announcement:
+    isEnabled: false
