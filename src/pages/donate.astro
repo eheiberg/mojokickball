@@ -3,6 +3,7 @@ import Layout from '~/layouts/PageLayout.astro';
 import Hero from '~/components/widgets/Hero.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
+import PayPalDonateButton from '~/components/ui/PayPalDonateButton.astro';
 
 const metadata = {
   title: 'Donate',
@@ -30,18 +31,18 @@ const metadata = {
         title: 'Field Rental',
         description:
           'Kenwood Park field rental fees keep a dedicated space available every Sunday for the entire season.',
-        icon: 'tabler:map-2',
+        icon: 'tabler:square-rotated',
       },
       {
         title: 'Kickballs',
         description:
           'Six lightweight polyurethane balls are needed per game. They wear down over the season and need replacing.',
-        icon: 'tabler:ball-football',
+        icon: 'tabler:bounce-left',
       },
       {
-        title: 'Equipment',
+        title: 'Equipment and refreshments',
         description:
-          'Cones, sashes (for chasers), bunt line markers, and other game equipment are funded by donations.',
+          'Cones, sashes (for chasers), horns, water, gatorade, and other game equipment are funded by donations.',
         icon: 'tabler:tool',
       },
       {
@@ -60,20 +61,7 @@ const metadata = {
       <p class="text-gray-600 mb-8">
         Any amount helps. $5 is suggested — even $1 makes a difference over a full season.
       </p>
-      <!--
-        PayPal Donate Button:
-        Replace this comment block with your PayPal donate button code.
-        You can generate one at https://www.paypal.com/donate/buttons/
-        It will look something like:
-        <form action="https://www.paypal.com/donate" method="post" target="_top">
-          <input type="hidden" name="hosted_button_id" value="YOUR_BUTTON_ID" />
-          <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" ... />
-        </form>
-      -->
-      <div class="inline-block rounded-xl border-2 border-dashed border-gray-300 px-10 py-8 text-gray-400">
-        <p class="text-sm">PayPal button goes here</p>
-        <p class="text-xs mt-1">(Replace with your PayPal donate button code)</p>
-      </div>
+      <PayPalDonateButton business="X5C25LZRB3JTU" itemName="For Mojo" />
     </div>
   </section>
 
