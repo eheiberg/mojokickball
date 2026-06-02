@@ -1,6 +1,6 @@
 site:
   name: MojoKickball
-  site: 'https://mojokickball.com'
+  site: 'https://www.mojokickball.com'
   base: '/'
   trailingSlash: false
 
