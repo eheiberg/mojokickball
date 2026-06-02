@@ -30,7 +30,7 @@ export default ({ config: _themeConfig = 'src/config.yaml' } = {}): AstroIntegra
 
         updateConfig({
           site: SITE.site,
-          base: SITE.base,
+          base: process.env.ASTRO_BASE ?? SITE.base,
 
           trailingSlash: SITE.trailingSlash ? 'always' : 'never',
 
