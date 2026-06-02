@@ -35,7 +35,8 @@ jobs:
 
       - name: Build site
         run: npm run build
-#        env:
+        env:
+          PUBLIC_WEB3FORMS_ACCESS_KEY: ${{ secrets.PUBLIC_WEB3FORMS_ACCESS_KEY }}
 #          ASTRO_BASE: '/mojokickball/'
 
       - name: Upload Pages artifact
